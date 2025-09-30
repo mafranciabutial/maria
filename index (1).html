@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio</title>
+  <style>
+    :root{
+      --card:#FF69B4;
+      --muted:#6b7280;
+      --accent:#e11d48;
+      --glass: #fff;
+      --card-shadow: 0 8px 30px rgba(2,6,23,0.5);
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      background:linear-gradient(90deg, rgba(255, 182, 193, 1) 0%, rgba(255, 192, 203, 0.9) 50%), url('bg-left.jpg') left center/cover no-repeat fixed;
+      color:#111827;
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:20px 40px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      position:sticky;top:0;backdrop-filter: blur(6px);z-index:10;
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .brand{color:var(--glass);font-weight:700;letter-spacing:1px}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--glass);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer}
+    nav a.active{background:var(--accent);color:white}
+    nav a:hover{background:rgba(255,255,255,0.06)}
+
+    .container{max-width:1100px;margin:48px auto;padding:0 20px}
+    .card{background:var(--card);border-radius:12px;padding:28px;box-shadow:var(--card-shadow);max-width:760px;margin:0 auto; width: 900px; height: 450px;}
+
+    h1{margin:0 0 12px;font-size:20px}
+    .subtitle{color:var(--muted);margin-bottom:18px}
+
+    .grid{display:grid;grid-template-columns:1fr;gap:16px}
+    .section{padding:14px;border-radius:10px;border:1px solid #f3f4f6;background:linear-gradient(180deg,#fff,#fbfbfd);margin-top:12px;display:none}
+    .section.active{display:block}
+    .section h2{margin:0 0 6px;font-size:16px}
+    .section p{margin:0;color:var(--muted);font-size:14px}
+
+    footer{max-width:760px;margin:18px auto;text-align:center;color:var(--muted);font-size:13px}
+
+    @media(min-width:900px){
+      body{background-position:left center}
+      .layout-row{display:flex;gap:28px;align-items:flex-start}
+      .card{margin-left:40px}
+    }
+    @media(max-width:520px){
+      header{padding:12px}
+      .container{margin:20px auto}
+      .card{padding:18px}
+    }
+    .list{margin:8px 0 0;padding:0;list-style:none}
+    .list li{padding:8px 0;border-bottom:1px dashed #f3f4f6}
+    .badge{display:inline-block;padding:6px 10px;border-radius:8px;background:#f3f4f6;font-size:12px}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">PORTFOLIO</div>
+    <nav>
+      <a class="active" onclick="showSection('all', this)">All</a>
+      <a onclick="showSection('seatwork', this)">Seatwork</a>
+      <a onclick="showSection('quizzes', this)">Quizzes</a>
+      <a onclick="showSection('labs', this)">Lab Activity</a>
+      <a onclick="showSection('exam', this)">Exam</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="layout-row">
+
+      <article class="card" role="article">
+        <h1 style="text-align: center;">RECORDS</h1>
+
+        <section id="all" class="section active">
+          <h2 style="text-align: center;">All Works</h2>
+          <div>
+            <h3 style="text-align: center;">Seatwork</h3>
+            <p class="muted">COMING SOON!!</p>
+          </div>
+          <div>
+            <h3 style="text-align: center;">Quizzes</h3>
+            <ul class="list">
+              <li style="text-align: center;">Quiz #1 <span class="muted"></span></li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="text-align: center;">Lab Activities</h3>
+            <p class="muted">Laboratory works and reports.</p>
+          </div>
+          <div>
+            <h3 style="text-align: center;">Exam</h3>
+            <p class="muted">Final exam submission and scores.</p>
+          </div>
+        </section>
+
+        <section id="seatwork" class="section">
+          <h2>Seatwork</h2>
+          <p class="muted">There are currently no seatworks</p>
+        </section>
+
+        <section id="quizzes" class="section">
+          <h2>Quizzes</h2>
+          <ul class="list">
+            <li>Quiz #1 — <span class="muted"></span></li> 
+          </ul>
+        </section>
+
+        <section id="labs" class="section">
+          <h2>Lab Activities</h2>
+          <p class="muted">Laboratory works and reports.</p>
+        </section>
+
+        <section id="exam" class="section">
+          <h2>Exam</h2>
+          <p class="muted">Final exam submission and scores.</p>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    © <strong>mafrancia.butial@cvsu.edu.ph</strong> — PLATFORM TECHNOLOGIES
+  </footer>
+
+  <script>
+    function showSection(id, el) {
+
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => sec.classList.remove('active'));
+
+     const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => link.classList.remove('active'));
+
+      document.getElementById(id).classList.add('active');
+      el.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
+```
